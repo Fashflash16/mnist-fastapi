@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NumberNumber</title>
+    <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body onload="init()">
+    <div id="main-container">
+        <div id="content">
+            <h1>Which digit is it?</h1>
+            <canvas id="can" width="256" height="256"></canvas>
+            <form id='mnist-form' onsubmit="canvastoimage()">
+                <input type="hidden" id="canvasimg" name="canvasimg" />
+                <input type="submit" class="btn" id="submit-btn" value="submit">
+            </form>
+            <input type="button" value="clear" class="btn" id="clr-btn" size="23" onclick="erase()">
+            <h2 id="pred"></h2>
+        </div>
+        <div id="footer">
+            <p>A project by Sayantan Karmakar</p>
+        </div>
+    </div>
+    <script src="../static/client.js"></script>
+</body>
+</html>
