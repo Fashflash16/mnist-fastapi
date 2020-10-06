@@ -41,6 +41,7 @@ h1 {
 #can {
     border-radius: 3px;
     margin-top: 24px;
+    touch-action: none;
 }
 
 .btn {

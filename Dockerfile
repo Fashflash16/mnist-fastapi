@@ -9,8 +9,7 @@ RUN pip install --upgrade -r requirements.txt
 
 COPY . .
 
-# RUN python app/server.py
+RUN adduser myuser
+USER myuser
 
-EXPOSE 8000
-
-CMD ["python", "main.py", "serve"]
+CMD uvicorn main:app --host 0.0.0.0 --port $PORT
