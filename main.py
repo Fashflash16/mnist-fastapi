@@ -1,7 +1,10 @@
+import uvicorn
+
 from fastapi import FastAPI, Request, File, UploadFile, Body
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.middleware.cors import CORSMiddleware
 
 from pydantic import BaseModel
 
@@ -26,6 +29,18 @@ model_name = 'mnist_resnet18.pkl'
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
+origins = [
+    "*"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 templates = Jinja2Templates(directory="templates")
 
 class CanvasImg(BaseModel):
@@ -43,7 +58,10 @@ def load_posix_learner(path):
 async def setup_learner():
     try:
         print(path/model_name)
-        learn = load_posix_learner(path/model_name)
+        try:
+            learn = load_learner(path/model_name)
+        except:
+            learn = load_posix_learner(path/model_name)
         learn.dls.device = 'cpu'
         print("Loaded model")
         return learn
@@ -80,3 +98,7 @@ async def create_file(req: CanvasImg):
 @app.get("/", response_class=HTMLResponse)
 async def read_item(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)

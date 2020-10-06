@@ -1,0 +1,6 @@
+  
+fastapi[all]
+jupyterlab
+asyncio
+aiohttp
+aiofiles
