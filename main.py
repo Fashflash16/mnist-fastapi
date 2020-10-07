@@ -25,7 +25,7 @@ try:
 except:
     path = Path(r'C:\\Users\\sayank\\workspace\\mnist-fastapi\\')
 
-model_name = 'mnist_resnet18.pkl'
+model_name = 'mnist_resnet18_2.pkl'
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
