@@ -98,3 +98,7 @@ async def create_file(req: CanvasImg):
 @app.get("/", response_class=HTMLResponse)
 async def read_item(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
+
+@app.get("/cron")
+async def cron_func():
+    return {"alive": True}
