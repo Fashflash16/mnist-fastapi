@@ -83,7 +83,7 @@ mnistForm.addEventListener('submit', (e) => {
     }).then((res) => {
         return res.json()
     }).then((json) => {
-        document.getElementById("pred").innerHTML = `The number is <span id="ans">${json['pred']}</span>`
+        document.getElementById("pred").innerHTML = `The digit is <span id="ans">${json['pred']}</span>`
     })
 })
 
